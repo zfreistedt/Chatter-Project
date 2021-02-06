@@ -1,6 +1,15 @@
-Enter Chat and press enter
+<title> Chatter App </title>
 
-<script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
+<head>
+
+  <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
+
+
+</head>
+
+
+
+
 
 <div><input id=input placeholder="message" /></div>
 Chat Output
@@ -10,8 +19,8 @@ Chat Output
 
   <script> (function() {
         var pubnub = new PubNub({
-            publishKey: "hidden",
-            subscribeKey: "hidden"
+            publishKey: "demo",
+            subscribeKey: "demo"
         });
         function $(id) {
             return document.getElementById(id);
