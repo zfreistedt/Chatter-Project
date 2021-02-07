@@ -4,16 +4,28 @@
 
   <script src=https://cdn.pubnub.com/sdk/javascript/pubnub.4.28.2.min.js></script>
 
-
 </head>
 
 
+<body>
+
+  <div>
+    <p> Please Enter Your Name AND HIT ENTER:</p>
+    <input style = "display: inline-block" id=nameinput placeholder="Name">
+    <div id= namestatement style = "display: inline-block"></div>
+  </div>
+
+  <br>
+  <h1>Chat:</h1>
+
+  <div><input id=input placeholder="Message" /></div>
+  <br>
+    <div id=box></div>
+</body>
 
 
 
-<div><input id=input placeholder="message" /></div>
-Chat Output
-<div id=box></div>
+
 
 
 
@@ -22,25 +34,39 @@ Chat Output
             publishKey: "demo",
             subscribeKey: "demo"
         });
+
         function $(id) {
             return document.getElementById(id);
         }
+
         var box = $('box'),
+            nameinput = $('nameinput'),
             input = $('input'),
             channel = '10chat-demo';
+
         pubnub.addListener({
             message: function(obj) {
                 box.innerHTML = ('' + obj.message).replace(/[<>]/g, '') + '<br>' + box.innerHTML
             }
         });
+
         pubnub.subscribe({
             channels: [channel]
         });
+
+        nameinput.addEventListener('keyup', function(e) {
+            if ((e.keyCode || e.charCode) === 13) {
+                username = nameinput.value
+                $('namestatement').innerHTML = "Your name is " + username
+                $('nameinput').innerHTML = null
+            }
+        });
+
         input.addEventListener('keyup', function(e) {
             if ((e.keyCode || e.charCode) === 13) {
                 pubnub.publish({
                     channel: channel,
-                    message: input.value,
+                    message: nameinput.value + ': ' + input.value,
                     x: (input.value = '')
                 });
             }
