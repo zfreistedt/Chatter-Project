@@ -18,15 +18,17 @@
 
   <br>
 
-<div class = "chatbox">
+    <div class = "chatbox">
 
-    <p style = "margin-left: 5px">Zach: Yooooo </p>
+        <div class = "chatstream" id=box></div>
+
+        <div class = "messagebar">
+            <div class="chatinput"><input class = "chatinputbox" id=input placeholder="Message" /></div>
+        </div>
+
+    </div>
 
 
-    <div class = "chatstream" id=box></div>
-
-  </div>
-  <div class="chatinput"><input id=input placeholder="Message" /></div>
 
   <br>
 
@@ -56,7 +58,7 @@
 
         pubnub.addListener({
             message: function(obj) {
-                box.innerHTML = ('' + obj.message).replace(/[<>]/g, '') + '<br>' + box.innerHTML
+                box.innerHTML = box.innerHTML + '<br>' + ('' + obj.message).replace(/[<>]/g, '')
             }
         });
 
@@ -67,8 +69,8 @@
         nameinput.addEventListener('keyup', function(e) {
             if ((e.keyCode || e.charCode) === 13) {
                 username = nameinput.value
-                $('namestatement').innerHTML = "Your name is " + username
-                $('nameinput').innerHTML = null
+                $('namestatement').innerHTML = "Your name is " + username +'.'
+                $('nameinput').innerHTML = ""
             }
         });
 
