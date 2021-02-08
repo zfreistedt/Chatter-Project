@@ -17,26 +17,18 @@
   </div>
 
   <br>
-
+<div class="scrolloverflow">Scroll jdnsajkdnjasndkjsandjnsajdaskjd sajkdnsajkd dj djdsf ddsf sdfdsf sdfds fdsf sdfdsf dsfds fdsfsd f</div>
+    <div class="container">
     <div class = "chatbox">
 
-        <div class = "chatstream" id=box></div>
+        <div class = "chatstream" id="box"></div>
 
         <div class = "messagebar">
             <div class="chatinput"><input class = "chatinputbox" id=input placeholder="Message" /></div>
         </div>
 
     </div>
-
-
-
-  <br>
-
-
-
-
-
-
+    </div>
 </body>
 
 
@@ -53,6 +45,7 @@
 
         var box = $('box'),
             nameinput = $('nameinput'),
+            username = String,
             input = $('input'),
             channel = '10chat-demo';
 
@@ -64,24 +57,34 @@
 
         pubnub.subscribe({
             channels: [channel]
+
         });
 
         nameinput.addEventListener('keyup', function(e) {
             if ((e.keyCode || e.charCode) === 13) {
                 username = nameinput.value
                 $('namestatement').innerHTML = "Your name is " + username +'.'
-                $('nameinput').innerHTML = ""
+                nameinput.value= ''
             }
         });
+
+
+        function scrollToBottom (box) {
+            var chatstreamdiv = document.getElementById(box);
+            chatstreamdiv.scrollTop = chatstreamdiv.scrollHeight - chatstreamdiv.clientHeight;
+        }
 
         input.addEventListener('keyup', function(e) {
             if ((e.keyCode || e.charCode) === 13) {
                 pubnub.publish({
                     channel: channel,
-                    message: nameinput.value + ': ' + input.value,
-                    x: (input.value = '')
+                    message: username + ': ' + input.value,
+                    x: (input.value = ''),
+
                 });
+
             }
+scrollToBottom(box);
         });
     })();
 </script>

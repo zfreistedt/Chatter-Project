@@ -1,3 +1,6 @@
+
+
+
 .chatbox{
   border-style: solid;
   border-radius: 30px;
@@ -9,7 +12,7 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .chatinput {
@@ -31,18 +34,26 @@ margin-right: auto;
 .chatstream {
   font-size: 20px;
   position: absolute;
-  bottom: 50px;
-  left: 10px;
-  width: 100%;
-  overflow-x: auto;
+
+  left: 2%;
+  width: 98%;
+
+bottom: 15%;
+  overflow: scroll;
+
 }
 
 .messagebar{
-
   width: 100%;
   height: 10%;
   border-radius: 0px 0px 30px 30px;
   background-color: skyblue;
   position: absolute;
   bottom: 0px;
+}
+
+.scrolloverflow{
+  height: 50px;
+  width: 200px;
+  overflow: auto
 }
